@@ -80,6 +80,15 @@
       border: 2px ridge #808080;
     }
 
+    .grid-item img {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .grid-item:hover img {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
     .item img {
       width: auto;
       max-width: 100%;
