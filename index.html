@@ -26,12 +26,14 @@
       border-top: 2px solid #404040;
     }
 
-    .menu-toggle {
+    .menu-toggle,
+    .reload-button {
       background-color: #D4D0C8;
       border: 2px outset #ffffff;
       padding: 5px 10px;
       cursor: pointer;
       margin: 10px;
+      font-size: 18px;
     }
 
     nav {
@@ -93,27 +95,19 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
-    .oculto {
-      display: none;
-    }
-
-    .etiquetas {
-      margin-top: 5px;
-    }
-
     .etiqueta {
-      background: #ccc;
-      border: 1px solid #999;
-      padding: 2px 6px;
-      margin: 2px 2px 0 0;
-      border-radius: 4px;
-      cursor: pointer;
       display: inline-block;
-      font-size: 12px;
+      margin-top: 4px;
+      cursor: pointer;
+      font-size: 13px;
     }
 
     .etiqueta:hover {
-      background: #eee;
+      font-weight: bold;
+    }
+
+    .oculto {
+      display: none;
     }
 
     @media (max-width: 900px) {
@@ -136,14 +130,8 @@
   </header>
 
   <div style="text-align: center;">
-    <button class="menu-toggle" onclick="toggleMenu()">📁</button>
-    <button onclick="location.reload()" style="
-      background: #ccc;
-      border: 1px solid #888;
-      padding: 5px 10px;
-      cursor: pointer;
-      margin-left: 10px;
-    ">🔁 Recargar obras</button>
+    <button class="menu-toggle" onclick="toggleMenu()">🗂️</button>
+    <button class="reload-button" onclick="recargarPagina()">🗘</button>
   </div>
 
   <nav id="menu">
@@ -170,10 +158,26 @@
     const buscador = document.getElementById('buscador');
     const menu = document.getElementById('menu');
 
+    // Recargar con nuevo orden aleatorio
+    function recargarPagina() {
+      location.reload();
+    }
+
+    // Alternar menú
     function toggleMenu() {
       menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
     }
 
+    // Filtrar por texto
+    buscador.addEventListener('input', () => {
+      const filtro = buscador.value.toLowerCase();
+      document.querySelectorAll('.item').forEach(obra => {
+        const etiquetas = obra.dataset.etiquetas.toLowerCase();
+        obra.classList.toggle('oculto', !etiquetas.includes(filtro));
+      });
+    });
+
+    // Filtrar por categoría desde menú o etiqueta
     function filtrarPorCategoria(categoria) {
       document.querySelectorAll('.item').forEach(obra => {
         const etiquetas = obra.dataset.etiquetas.toLowerCase();
@@ -182,59 +186,27 @@
       buscador.value = "";
     }
 
-    function filtrarPorEtiqueta(etiqueta) {
-      document.querySelectorAll('.item').forEach(obra => {
-        const etiquetas = obra.dataset.etiquetas.toLowerCase();
-        obra.classList.toggle('oculto', !etiquetas.includes(etiqueta.toLowerCase()));
-      });
-      buscador.value = "";
-    }
-
-    function mezclar(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-    }
-
+    // Cargar imágenes aleatoriamente desde JSON
     fetch('obras.json')
       .then(res => res.json())
       .then(data => {
-        mezclar(data); // aleatorizar
+        // Mezclar orden aleatoriamente
+        data.sort(() => Math.random() - 0.5);
 
         data.forEach(obra => {
           const item = document.createElement('div');
           item.className = 'item';
           item.dataset.etiquetas = obra.etiquetas;
 
-          const img = document.createElement('img');
-          img.src = obra.src;
-          img.alt = "";
+          const etiquetasHTML = obra.etiquetas
+            .split(' ')
+            .map(et => `<span class="etiqueta" onclick="filtrarPorCategoria('${et}')">${et}</span>`)
+            .join(' ');
 
-          const etiquetasElem = document.createElement("div");
-          etiquetasElem.className = "etiquetas";
-
-          obra.etiquetas.split(" ").forEach(etiqueta => {
-            const tag = document.createElement("span");
-            tag.className = "etiqueta";
-            tag.textContent = etiqueta;
-            tag.onclick = () => filtrarPorEtiqueta(etiqueta);
-            etiquetasElem.appendChild(tag);
-          });
-
-          item.appendChild(img);
-          item.appendChild(etiquetasElem);
+          item.innerHTML = `<img src="${obra.src}" alt=""><div>${etiquetasHTML}</div>`;
           galeria.appendChild(item);
         });
       });
-
-    buscador.addEventListener('input', () => {
-      const filtro = buscador.value.toLowerCase();
-      document.querySelectorAll('.item').forEach(obra => {
-        const etiquetas = obra.dataset.etiquetas.toLowerCase();
-        obra.classList.toggle('oculto', !etiquetas.includes(filtro));
-      });
-    });
   </script>
 
 </body>
