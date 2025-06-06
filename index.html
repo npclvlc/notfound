@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Museo Virtual Clásico</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'MS Sans Serif', Tahoma, sans-serif;
+      background-color: #C0C0C0;
+      color: black;
+    }
+
+    header {
+      background-color: #808080;
+      border-bottom: 2px solid #fff;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      border-top: 2px solid #404040;
+    }
+
+    .menu-toggle {
+      background-color: #D4D0C8;
+      border: 2px outset #ffffff;
+      padding: 5px 10px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    nav {
+      display: none;
+      background-color: #A0A0A0;
+      padding: 10px;
+      border: 2px inset #808080;
+      margin: 10px;
+    }
+
+    .categoria {
+      background-color: #D4D0C8;
+      padding: 5px;
+      margin: 5px 0;
+      border: 2px outset #ffffff;
+      cursor: pointer;
+    }
+
+    .categoria:hover {
+      background-color: #C0C0C0;
+    }
+
+    .filtros {
+      text-align: center;
+      margin: 10px;
+    }
+
+    input[type="text"] {
+      padding: 5px;
+      border: 2px inset #808080;
+      background-color: #FFFFFF;
+      width: 250px;
+    }
+
+    .galeria {
+      column-count: 3;
+      column-gap: 10px;
+      padding: 10px;
+    }
+
+    .item {
+      break-inside: avoid;
+      margin-bottom: 10px;
+      background-color: #E0E0E0;
+      padding: 4px;
+      border: 2px ridge #808080;
+    }
+
+    .item img {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .oculto {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .galeria {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .galeria {
+        column-count: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    npc
+  </header>
+
+  <div style="text-align: center;">
+    <button class="menu-toggle" onclick="toggleMenu()">📁</button>
+  </div>
+
+  <nav id="menu">
+    <div class="categoria" onclick="filtrarPorCategoria('todos')">ver todas</div>
+    <div class="categoria" onclick="filtrarPorCategoria('abstracción')">abstracción</div>
+    <div class="categoria" onclick="filtrarPorCategoria('arquitectura')">arquitectura</div>
+    <div class="categoria" onclick="filtrarPorCategoria('diseño de indumentaria')">diseño de indumentaria</div>
+    <div class="categoria" onclick="filtrarPorCategoria('diseño de interiores')">diseño de interiores</div>
+    <div class="categoria" onclick="filtrarPorCategoria('escultura')">escultura</div>
+    <div class="categoria" onclick="filtrarPorCategoria('fotografía')">fotografía</div>
+    <div class="categoria" onclick="filtrarPorCategoria('ilustración')">ilustración</div>
+    <div class="categoria" onclick="filtrarPorCategoria('nostalgia futurista')">nostalgia futurista</div>
+    <div class="categoria" onclick="filtrarPorCategoria('scifi')">scifi</div>
+  </nav>
+
+  <div class="filtros">
+    <input type="text" id="buscador" placeholder="Buscar por etiqueta...">
+  </div>
+
+  <div class="galeria" id="galeria"></div>
+
+  <script>
+    const galeria = document.getElementById('galeria');
+    const buscador = document.getElementById('buscador');
+    const menu = document.getElementById('menu');
+
+    // Cargar imágenes desde el archivo JSON
+    fetch('obras.json')
+      .then(res => res.json())
+      .then(data => {
+        data.forEach(obra => {
+          const item = document.createElement('div');
+          item.className = 'item';
+          item.dataset.etiquetas = obra.etiquetas;
+          item.innerHTML = `<img src="${obra.src}" alt=""><p>${obra.etiquetas}</p>`;
+          galeria.appendChild(item);
+        });
+      });
+
+    // Filtro por texto
+    buscador.addEventListener('input', () => {
+      const filtro = buscador.value.toLowerCase();
+      document.querySelectorAll('.item').forEach(obra => {
+        const etiquetas = obra.dataset.etiquetas.toLowerCase();
+        obra.classList.toggle('oculto', !etiquetas.includes(filtro));
+      });
+    });
+
+    // Filtro por categoría
+    function filtrarPorCategoria(categoria) {
+      document.querySelectorAll('.item').forEach(obra => {
+        const etiquetas = obra.dataset.etiquetas.toLowerCase();
+        obra.classList.toggle('oculto', categoria !== 'todos' && !etiquetas.includes(categoria));
+      });
+      buscador.value = "";
+    }
+
+    // Menú desplegable
+    function toggleMenu() {
+      menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    }
+  </script>
+
+</body>
+</html>
