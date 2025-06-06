@@ -91,8 +91,8 @@
     }
 
     .item:hover img {
-      transform: scale(1.02);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
     .etiqueta {
@@ -100,7 +100,6 @@
       margin-top: 4px;
       cursor: pointer;
       font-size: 13px;
-      transition: font-weight 0.2s ease;
     }
 
     .etiqueta:hover {
@@ -199,10 +198,12 @@
           item.className = 'item';
           item.dataset.etiquetas = obra.etiquetas;
 
-          const etiquetaTexto = obra.etiquetas;
-          const etiquetaHTML = `<span class="etiqueta" onclick="filtrarPorCategoria('${etiquetaTexto}')">${etiquetaTexto}</span>`;
+          const etiquetasHTML = obra.etiquetas
+            .split(' ')
+            .map(et => `<span class="etiqueta" onclick="filtrarPorCategoria('${et}')">${et}</span>`)
+            .join(' ');
 
-          item.innerHTML = `<img src="${obra.src}" alt=""><div>${etiquetaHTML}</div>`;
+          item.innerHTML = `<img src="${obra.src}" alt=""><div>${etiquetasHTML}</div>`;
           galeria.appendChild(item);
         });
       });
@@ -210,4 +211,3 @@
 
 </body>
 </html>
-
