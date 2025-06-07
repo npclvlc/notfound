@@ -26,12 +26,14 @@
       border-top: 2px solid #404040;
     }
 
-    .menu-toggle {
+    .menu-toggle,
+    .reload-button {
       background-color: #D4D0C8;
       border: 2px outset #ffffff;
       padding: 5px 10px;
       cursor: pointer;
       margin: 10px;
+      font-size: 18px;
     }
 
     nav {
@@ -80,20 +82,29 @@
       border: 2px ridge #808080;
     }
 
-    .grid-item img {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .grid-item:hover img {
-      transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-
     .item img {
       width: auto;
       max-width: 100%;
       height: auto;
       display: block;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .item:hover img {
+      transform: scale(1.02);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .etiqueta {
+      display: inline-block;
+      margin-top: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: font-weight 0.2s ease;
+    }
+
+    .etiqueta:hover {
+      font-weight: bold;
     }
 
     .oculto {
@@ -120,7 +131,8 @@
   </header>
 
   <div style="text-align: center;">
-    <button class="menu-toggle" onclick="toggleMenu()">📁</button>
+    <button class="menu-toggle" onclick="toggleMenu()">🗂️</button>
+    <button class="reload-button" onclick="recargarPagina()">🗘</button>
   </div>
 
   <nav id="menu">
@@ -147,20 +159,17 @@
     const buscador = document.getElementById('buscador');
     const menu = document.getElementById('menu');
 
-    // Cargar imágenes desde el archivo JSON
-    fetch('obras.json')
-      .then(res => res.json())
-      .then(data => {
-        data.forEach(obra => {
-          const item = document.createElement('div');
-          item.className = 'item';
-          item.dataset.etiquetas = obra.etiquetas;
-          item.innerHTML = `<img src="${obra.src}" alt=""><p>${obra.etiquetas}</p>`;
-          galeria.appendChild(item);
-        });
-      });
+    // Recargar con nuevo orden aleatorio
+    function recargarPagina() {
+      location.reload();
+    }
 
-    // Filtro por texto
+    // Alternar menú
+    function toggleMenu() {
+      menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    }
+
+    // Filtrar por texto
     buscador.addEventListener('input', () => {
       const filtro = buscador.value.toLowerCase();
       document.querySelectorAll('.item').forEach(obra => {
@@ -169,7 +178,7 @@
       });
     });
 
-    // Filtro por categoría
+    // Filtrar por categoría desde menú o etiqueta
     function filtrarPorCategoria(categoria) {
       document.querySelectorAll('.item').forEach(obra => {
         const etiquetas = obra.dataset.etiquetas.toLowerCase();
@@ -178,10 +187,25 @@
       buscador.value = "";
     }
 
-    // Menú desplegable
-    function toggleMenu() {
-      menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
-    }
+    // Cargar imágenes aleatoriamente desde JSON
+    fetch('obras.json')
+      .then(res => res.json())
+      .then(data => {
+        // Mezclar orden aleatoriamente
+        data.sort(() => Math.random() - 0.5);
+
+        data.forEach(obra => {
+          const item = document.createElement('div');
+          item.className = 'item';
+          item.dataset.etiquetas = obra.etiquetas;
+
+          const etiquetaTexto = obra.etiquetas;
+          const etiquetaHTML = `<span class="etiqueta" onclick="filtrarPorCategoria('${etiquetaTexto}')">${etiquetaTexto}</span>`;
+
+          item.innerHTML = `<img src="${obra.src}" alt=""><div>${etiquetaHTML}</div>`;
+          galeria.appendChild(item);
+        });
+      });
   </script>
 
 </body>
