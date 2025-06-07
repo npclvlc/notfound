@@ -5,7 +5,7 @@
   },
   {
     "src": "obras/obra2.jpg",
-    "etiquetas": "scifi"
+    "etiquetas": "diseño gráfico"
   },
   {
     "src": "obras/obra3.png",
@@ -41,7 +41,7 @@
   },
   {
     "src": "obras/obra11.jpg",
-    "etiquetas": "abstracción"
+    "etiquetas": "diseño gráfico"
   },
   {
     "src": "obras/obra12.jpg",
@@ -49,7 +49,7 @@
   },
   {
     "src": "obras/obra13.jpg",
-    "etiquetas": "abstracción"
+    "etiquetas": "diseño gráfico"
   },
   {
     "src": "obras/obra14.png",
@@ -61,7 +61,7 @@
   },
   {
     "src": "obras/obra16.jpg",
-    "etiquetas": "abstracción"
+    "etiquetas": "diseño gráfico"
   },
   {
     "src": "obras/obra17.jpg",
@@ -77,7 +77,7 @@
   },
   {
     "src": "obras/obra20.jpg",
-    "etiquetas": "scifi"
+    "etiquetas": "diseño gráfico"
   },
   {
     "src": "obras/obra21.jpg",
@@ -397,6 +397,406 @@
   },
   {
     "src": "obras/obra100.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra101.jpg",
+    "etiquetas": "fotografía"
+  },
+  {
+    "src": "obras/obra102.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra103.jpg",
+    "etiquetas": "nostalgia futurista"
+  },
+  {
+    "src": "obras/obra104.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra105.jpg",
+    "etiquetas": "nostalgia futurista"
+  },
+  {
+    "src": "obras/obra106.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra107.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra108.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra109.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra110.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra111.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra112.jpg",
+    "etiquetas": "nostalgia futurista"
+  },
+  {
+    "src": "obras/obra113.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra114.jpg",
+    "etiquetas": "fotografía"
+  },
+  {
+    "src": "obras/obra115.jpg",
+    "etiquetas": "nostalgia futurista"
+  },
+  {
+    "src": "obras/obra116.jpg",
+    "etiquetas": "ingeniería mecánica"
+  },
+  {
+    "src": "obras/obra117.jpg",
+    "etiquetas": "nostalgia futurista"
+  },
+  {
+    "src": "obras/obra118.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra119.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra120.jpg",
+    "etiquetas": "diseño de indumentaria"
+  },
+  {
+    "src": "obras/obra121.jpg",
+    "etiquetas": "diseño de indumentaria"
+  },
+  {
+    "src": "obras/obra122.jpg",
+    "etiquetas": "fotografía"
+  },
+  {
+    "src": "obras/obra123.jpg",
+    "etiquetas": "ingeniería mecánica"
+  },
+  {
+    "src": "obras/obra124.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra125.png",
+    "etiquetas": "diseño de interiores"
+  },
+  {
+    "src": "obras/obra126.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra127.jpg",
+    "etiquetas": "diseño de indumentaria"
+  },
+  {
+    "src": "obras/obra128.jpg",
+    "etiquetas": "escultura"
+  },
+  {
+    "src": "obras/obra129.jpg",
+    "etiquetas": "fotografía"
+  },
+  {
+    "src": "obras/obra130.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra131.jpg",
+    "etiquetas": "ingeniería mecánica"
+  },
+  {
+    "src": "obras/obra132.jpg",
+    "etiquetas": "ingeniería mecánica"
+  },
+  {
+    "src": "obras/obra133.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra134.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra135.jpg",
+    "etiquetas": "diseño de indumentaria"
+  },
+  {
+    "src": "obras/obra136.png",
+    "etiquetas": "arquitectura"
+  },
+  {
+    "src": "obras/obra137.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra138.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra139.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra140.jpg",
+    "etiquetas": "fotografía"
+  },
+  {
+    "src": "obras/obra141.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra142.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra143.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra144.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra145.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra146.jpg",
+    "etiquetas": "diseño de indumentaria"
+  },
+  {
+    "src": "obras/obra147.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra148.jpg",
+    "etiquetas": "nostalgia futurista"
+  },
+  {
+    "src": "obras/obra149.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra150.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra151.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra152.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra153.jpg",
+    "etiquetas": "fotografía"
+  },
+  {
+    "src": "obras/obra154.jpg",
+    "etiquetas": "diseño de indumentaria"
+  },
+  {
+    "src": "obras/obra155.jpg",
+    "etiquetas": "diseño de interiores"
+  },
+  {
+    "src": "obras/obra156.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra157.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra158.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra159.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra160.jpg",
+    "etiquetas": "nostalgia futurista"
+  },
+  {
+    "src": "obras/obra161.jpg",
+    "etiquetas": "nostalgia futurista"
+  },
+  {
+    "src": "obras/obra162.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra163.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra164.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra165.png",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra166.jpg",
+    "etiquetas": "fotografía"
+  },
+  {
+    "src": "obras/obra167.jpg",
+    "etiquetas": "diseño de interiores"
+  },
+  {
+    "src": "obras/obra168.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra169.jpg",
+    "etiquetas": "fotografía"
+  },
+  {
+    "src": "obras/obra170.jpg",
+    "etiquetas": "fotografía"
+  },
+  {
+    "src": "obras/obra171.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra172.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra173.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra174.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra175.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra176.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra177.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra178.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra179.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra180.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra181.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra182.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra183.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra184.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra185.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra186.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra187.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra188.jpg",
+    "etiquetas": "diseño de interiores"
+  },
+  {
+    "src": "obras/obra189.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra190.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra191.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra192.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra193.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra194.jpg",
+    "etiquetas": "ilustración"
+  },
+  {
+    "src": "obras/obra195.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra196.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra197.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra198.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra199.jpg",
+    "etiquetas": "diseño gráfico"
+  },
+  {
+    "src": "obras/obra200.jpg",
     "etiquetas": "diseño gráfico"
   }
 ]
