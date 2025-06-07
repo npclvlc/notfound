@@ -211,8 +211,8 @@
 
   <!-- Panel contextual -->
   <div id="contextMenu" class="context-menu">
-    <div onclick="accion('ver')">ver</div>
-    <div onclick="accion('descargar')">descargar</div>
+    <div onclick="accion('ver'); event.stopPropagation()">ver</div>
+    <div onclick="accion('descargar'); event.stopPropagation()">descargar</div>
     <div>buscar</div>
     <div>guardar</div>
     <div>ver etiqueta</div>
