@@ -1,161 +1,188 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>npc</title>
+  <meta charset="UTF-8">
+  <title>Museo Virtual Clásico</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      background: #c0c0c0;
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
+      font-family: 'MS Sans Serif', Tahoma, sans-serif;
+      background-color: #C0C0C0;
+      color: black;
     }
 
     header {
-      background: #808080;
-      color: black;
+      background-color: #808080;
+      border-bottom: 2px solid #fff;
       padding: 10px;
       text-align: center;
       font-weight: bold;
+      font-size: 18px;
+      border-top: 2px solid #404040;
     }
 
-    #menu {
-      display: flex;
-      justify-content: center;
-      margin: 10px 0;
-      gap: 10px;
-    }
-
-    #menu button {
-      background: none;
-      border: none;
-      font-size: 24px;
+    .menu-toggle {
+      background-color: #D4D0C8;
+      border: 2px outset #ffffff;
+      padding: 5px 10px;
       cursor: pointer;
-    }
-
-    #buscador {
-      display: flex;
-      justify-content: center;
       margin: 10px;
     }
 
-    #buscador input {
-      padding: 5px;
-      width: 200px;
+    nav {
+      display: none;
+      background-color: #A0A0A0;
+      padding: 10px;
+      border: 2px inset #808080;
+      margin: 10px;
     }
 
-    #galeria {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 10px;
+    .categoria {
+      background-color: #D4D0C8;
+      padding: 5px;
+      margin: 5px 0;
+      border: 2px outset #ffffff;
+      cursor: pointer;
+    }
+
+    .categoria:hover {
+      background-color: #C0C0C0;
+    }
+
+    .filtros {
+      text-align: center;
+      margin: 10px;
+    }
+
+    input[type="text"] {
+      padding: 5px;
+      border: 2px inset #808080;
+      background-color: #FFFFFF;
+      width: 250px;
+    }
+
+    .galeria {
+      column-count: 3;
+      column-gap: 10px;
       padding: 10px;
     }
 
     .item {
-      background: white;
-      border: 1px solid black;
-      padding: 10px;
-      min-height: 320px; /* Recuadro más alto */
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      break-inside: avoid;
+      margin-bottom: 10px;
+      background-color: #E0E0E0;
+      padding: 4px;
+      border: 2px ridge #808080;
+    }
+
+    .grid-item img {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .grid-item:hover img {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
     .item img {
-      width: 100%;
+      width: auto;
+      max-width: 100%;
       height: auto;
-      transition: transform 0.3s ease;
+      display: block;
     }
 
-    .item:hover img {
-      transform: scale(1.1);
+    .oculto {
+      display: none;
     }
 
-    .etiqueta {
-      display: inline-block;
-      margin-top: 8px;
-      cursor: pointer;
-      font-weight: normal;
+    @media (max-width: 900px) {
+      .galeria {
+        column-count: 2;
+      }
     }
 
-    .etiqueta:hover {
-      font-weight: bold;
+    @media (max-width: 600px) {
+      .galeria {
+        column-count: 1;
+      }
     }
   </style>
 </head>
 <body>
-  <header>npc</header>
 
-  <div id="menu">
-    <button onclick="recargarObras()">📁</button>
-    <button onclick="filtrarPorCategoria('')">🔁</button>
+  <header>
+    npc
+  </header>
+
+  <div style="text-align: center;">
+    <button class="menu-toggle" onclick="toggleMenu()">📁</button>
   </div>
 
-  <div id="buscador">
-    <input type="text" id="busqueda" placeholder="Buscar por etiqueta..." oninput="filtrarBusqueda()"/>
+  <nav id="menu">
+    <div class="categoria" onclick="filtrarPorCategoria('todos')">ver todas</div>
+    <div class="categoria" onclick="filtrarPorCategoria('abstracción')">abstracción</div>
+    <div class="categoria" onclick="filtrarPorCategoria('arquitectura')">arquitectura</div>
+    <div class="categoria" onclick="filtrarPorCategoria('diseño de indumentaria')">diseño de indumentaria</div>
+    <div class="categoria" onclick="filtrarPorCategoria('diseño de interiores')">diseño de interiores</div>
+    <div class="categoria" onclick="filtrarPorCategoria('escultura')">escultura</div>
+    <div class="categoria" onclick="filtrarPorCategoria('fotografía')">fotografía</div>
+    <div class="categoria" onclick="filtrarPorCategoria('ilustración')">ilustración</div>
+    <div class="categoria" onclick="filtrarPorCategoria('nostalgia futurista')">nostalgia futurista</div>
+    <div class="categoria" onclick="filtrarPorCategoria('scifi')">scifi</div>
+  </nav>
+
+  <div class="filtros">
+    <input type="text" id="buscador" placeholder="Buscar por etiqueta...">
   </div>
 
-  <div id="galeria"></div>
-
-  <!-- Música de fondo -->
-  <div style="display:none">
-    <!-- PEGÁ ACÁ EL LINK DE SPOTIFY (src del iframe) -->
-    <iframe style="display:none" 
-            src="https://open.spotify.com/embed/playlist/TU_PLAYLIST_ACÁ" 
-            width="0" height="0" frameborder="0" 
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-            allowfullscreen loading="lazy">
-    </iframe>
-  </div>
+  <div class="galeria" id="galeria"></div>
 
   <script>
     const galeria = document.getElementById('galeria');
+    const buscador = document.getElementById('buscador');
+    const menu = document.getElementById('menu');
 
-    function recargarObras() {
-      location.reload();
-    }
-
-    function filtrarPorCategoria(categoria) {
-      const items = document.querySelectorAll('.item');
-      items.forEach(item => {
-        if (!categoria || item.dataset.etiquetas.includes(categoria)) {
-          item.style.display = '';
-        } else {
-          item.style.display = 'none';
-        }
-      });
-    }
-
-    function filtrarBusqueda() {
-      const input = document.getElementById('busqueda').value.toLowerCase();
-      const items = document.querySelectorAll('.item');
-      items.forEach(item => {
-        if (item.dataset.etiquetas.toLowerCase().includes(input)) {
-          item.style.display = '';
-        } else {
-          item.style.display = 'none';
-        }
-      });
-    }
-
-    // Cargar imágenes aleatoriamente desde JSON
+    // Cargar imágenes desde el archivo JSON
     fetch('obras.json')
       .then(res => res.json())
       .then(data => {
-        data.sort(() => Math.random() - 0.5);
         data.forEach(obra => {
           const item = document.createElement('div');
           item.className = 'item';
           item.dataset.etiquetas = obra.etiquetas;
-
-          const etiquetaTexto = obra.etiquetas;
-          const etiquetaHTML = `<span class="etiqueta" onclick="filtrarPorCategoria('${etiquetaTexto}')">${etiquetaTexto}</span>`;
-
-          item.innerHTML = `<img src="${obra.src}" alt="${etiquetaTexto}"><div>${etiquetaHTML}</div>`;
+          item.innerHTML = `<img src="${obra.src}" alt=""><p>${obra.etiquetas}</p>`;
           galeria.appendChild(item);
         });
       });
+
+    // Filtro por texto
+    buscador.addEventListener('input', () => {
+      const filtro = buscador.value.toLowerCase();
+      document.querySelectorAll('.item').forEach(obra => {
+        const etiquetas = obra.dataset.etiquetas.toLowerCase();
+        obra.classList.toggle('oculto', !etiquetas.includes(filtro));
+      });
+    });
+
+    // Filtro por categoría
+    function filtrarPorCategoria(categoria) {
+      document.querySelectorAll('.item').forEach(obra => {
+        const etiquetas = obra.dataset.etiquetas.toLowerCase();
+        obra.classList.toggle('oculto', categoria !== 'todos' && !etiquetas.includes(categoria));
+      });
+      buscador.value = "";
+    }
+
+    // Menú desplegable
+    function toggleMenu() {
+      menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    }
   </script>
+
 </body>
 </html>
