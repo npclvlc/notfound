@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Museo Virtual Clásico</title>
+  <title>npclvlc</title>
   <style>
     * {
       box-sizing: border-box;
@@ -124,7 +124,6 @@
       }
     }
 
-    /* Panel tipo Windows 95 */
     .context-menu {
       position: absolute;
       background-color: #C0C0C0;
@@ -145,6 +144,33 @@
     .context-menu div:hover {
       background-color: #000080;
       color: white;
+    }
+
+    #visor {
+      display: none;
+      width: 100%;
+      padding: 10px;
+      display: flex;
+      background-color: #A0A0A0;
+      border-top: 2px solid #fff;
+      border-bottom: 2px solid #404040;
+    }
+
+    #visor img {
+      max-width: 60%;
+      height: auto;
+      border: 2px inset #fff;
+      background-color: #D4D0C8;
+      margin-right: 20px;
+    }
+
+    #metadatos {
+      background-color: #D4D0C8;
+      border: 2px inset #fff;
+      padding: 10px;
+      font-size: 14px;
+      min-width: 200px;
+      flex: 1;
     }
   </style>
 </head>
@@ -177,11 +203,17 @@
 
   <div class="galeria" id="galeria"></div>
 
+  <!-- Visor de imagen y metadatos -->
+  <div id="visor">
+    <img id="visorImg" src="" alt="">
+    <div id="metadatos"></div>
+  </div>
+
   <!-- Panel contextual -->
   <div id="contextMenu" class="context-menu">
+    <div onclick="accion('ver')">ver</div>
+    <div onclick="accion('descargar')">descargar</div>
     <div>buscar</div>
-    <div>ver</div>
-    <div>descargar</div>
     <div>guardar</div>
     <div>ver etiqueta</div>
   </div>
@@ -191,6 +223,11 @@
     const buscador = document.getElementById('buscador');
     const menu = document.getElementById('menu');
     const contextMenu = document.getElementById('contextMenu');
+    const visor = document.getElementById('visor');
+    const visorImg = document.getElementById('visorImg');
+    const metadatos = document.getElementById('metadatos');
+
+    let imagenActual = null;
 
     function recargarPagina() {
       location.reload();
@@ -220,6 +257,7 @@
     document.addEventListener('click', (e) => {
       if (e.target.tagName === 'IMG' && e.target.closest('.item')) {
         e.preventDefault();
+        imagenActual = e.target;
         contextMenu.style.display = 'block';
         contextMenu.style.left = `${e.pageX}px`;
         contextMenu.style.top = `${e.pageY}px`;
@@ -227,6 +265,39 @@
         contextMenu.style.display = 'none';
       }
     });
+
+    // Acción del panel contextual
+    function accion(tipo) {
+      if (!imagenActual) return;
+      const src = imagenActual.src;
+
+      if (tipo === 'ver') {
+        visorImg.src = src;
+        visor.style.display = 'flex';
+
+        // Cargar metadatos básicos
+        const img = new Image();
+        img.src = src;
+        img.onload = () => {
+          metadatos.innerHTML = `
+            <b>Ruta:</b> ${src}<br>
+            <b>Ancho:</b> ${img.width}px<br>
+            <b>Alto:</b> ${img.height}px
+          `;
+        };
+      }
+
+      if (tipo === 'descargar') {
+        const link = document.createElement('a');
+        link.href = src;
+        link.download = src.split('/').pop();
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      contextMenu.style.display = 'none';
+    }
 
     // Cargar imágenes aleatoriamente desde JSON
     fetch('obras.json')
