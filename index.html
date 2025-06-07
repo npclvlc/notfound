@@ -88,6 +88,7 @@
       height: auto;
       display: block;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
     }
 
     .item:hover img {
@@ -122,6 +123,29 @@
         column-count: 1;
       }
     }
+
+    /* Panel tipo Windows 95 */
+    .context-menu {
+      position: absolute;
+      background-color: #C0C0C0;
+      border: 2px outset #fff;
+      font-family: 'MS Sans Serif', Tahoma, sans-serif;
+      font-size: 13px;
+      z-index: 1000;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+      display: none;
+    }
+
+    .context-menu div {
+      padding: 4px 12px;
+      border-bottom: 1px solid #808080;
+      cursor: default;
+    }
+
+    .context-menu div:hover {
+      background-color: #000080;
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -153,30 +177,29 @@
 
   <div class="galeria" id="galeria"></div>
 
-  <div style="text-align:center; margin-top: 20px;">
-    <!-- Reemplazá EL_LINK_DE_SPOTIFY_ACÁ por el link de tu playlist -->
-    <iframe style="border-radius:12px" 
-      src="https://open.spotify.com/embed/playlist/https://open.spotify.com/playlist/0aS3xztGIntA3desgvsHoE?si=98418afd2a0548e8?utm_source=generator&theme=0" 
-      width="300" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
-    </iframe>
+  <!-- Panel contextual -->
+  <div id="contextMenu" class="context-menu">
+    <div>buscar</div>
+    <div>ver</div>
+    <div>descargar</div>
+    <div>guardar</div>
+    <div>ver etiqueta</div>
   </div>
-  
+
   <script>
     const galeria = document.getElementById('galeria');
     const buscador = document.getElementById('buscador');
     const menu = document.getElementById('menu');
+    const contextMenu = document.getElementById('contextMenu');
 
-    // Recargar con nuevo orden aleatorio
     function recargarPagina() {
       location.reload();
     }
 
-    // Alternar menú
     function toggleMenu() {
       menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
     }
 
-    // Filtrar por texto
     buscador.addEventListener('input', () => {
       const filtro = buscador.value.toLowerCase();
       document.querySelectorAll('.item').forEach(obra => {
@@ -185,7 +208,6 @@
       });
     });
 
-    // Filtrar por categoría desde menú o etiqueta
     function filtrarPorCategoria(categoria) {
       document.querySelectorAll('.item').forEach(obra => {
         const etiquetas = obra.dataset.etiquetas.toLowerCase();
@@ -194,13 +216,23 @@
       buscador.value = "";
     }
 
+    // Mostrar panel contextual al hacer click en imagen
+    document.addEventListener('click', (e) => {
+      if (e.target.tagName === 'IMG' && e.target.closest('.item')) {
+        e.preventDefault();
+        contextMenu.style.display = 'block';
+        contextMenu.style.left = `${e.pageX}px`;
+        contextMenu.style.top = `${e.pageY}px`;
+      } else {
+        contextMenu.style.display = 'none';
+      }
+    });
+
     // Cargar imágenes aleatoriamente desde JSON
     fetch('obras.json')
       .then(res => res.json())
       .then(data => {
-        // Mezclar orden aleatoriamente
         data.sort(() => Math.random() - 0.5);
-
         data.forEach(obra => {
           const item = document.createElement('div');
           item.className = 'item';
