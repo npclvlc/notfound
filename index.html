@@ -1,199 +1,149 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Museo Virtual Clásico</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>npc</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
+      background: #c0c0c0;
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      font-family: 'MS Sans Serif', Tahoma, sans-serif;
-      background-color: #C0C0C0;
-      color: black;
     }
 
     header {
-      background-color: #808080;
-      border-bottom: 2px solid #fff;
+      background: #808080;
+      color: black;
       padding: 10px;
       text-align: center;
       font-weight: bold;
-      font-size: 18px;
-      border-top: 2px solid #404040;
     }
 
-    .menu-toggle,
-    .reload-button {
-      background-color: #D4D0C8;
-      border: 2px outset #ffffff;
-      padding: 5px 10px;
-      cursor: pointer;
-      margin: 10px;
-      font-size: 18px;
+    #menu {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0;
+      gap: 10px;
     }
 
-    nav {
-      display: none;
-      background-color: #A0A0A0;
-      padding: 10px;
-      border: 2px inset #808080;
-      margin: 10px;
-    }
-
-    .categoria {
-      background-color: #D4D0C8;
-      padding: 5px;
-      margin: 5px 0;
-      border: 2px outset #ffffff;
+    #menu button {
+      background: none;
+      border: none;
+      font-size: 24px;
       cursor: pointer;
     }
 
-    .categoria:hover {
-      background-color: #C0C0C0;
-    }
-
-    .filtros {
-      text-align: center;
+    #buscador {
+      display: flex;
+      justify-content: center;
       margin: 10px;
     }
 
-    input[type="text"] {
+    #buscador input {
       padding: 5px;
-      border: 2px inset #808080;
-      background-color: #FFFFFF;
-      width: 250px;
+      width: 200px;
     }
 
-    .galeria {
-      column-count: 3;
-      column-gap: 10px;
+    #galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
       padding: 10px;
     }
 
     .item {
-      break-inside: avoid;
-      margin-bottom: 10px;
-      background-color: #E0E0E0;
-      padding: 4px;
-      border: 2px ridge #808080;
+      background: white;
+      border: 1px solid black;
+      padding: 10px;
+      min-height: 320px; /* Recuadro más alto */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .item img {
-      width: auto;
-      max-width: 100%;
+      width: 100%;
       height: auto;
-      display: block;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease;
     }
 
     .item:hover img {
-      transform: scale(1.005);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transform: scale(1.1);
     }
 
     .etiqueta {
       display: inline-block;
-      margin-top: 4px;
+      margin-top: 8px;
       cursor: pointer;
-      font-size: 13px;
-      transition: font-weight 0.2s ease;
+      font-weight: normal;
     }
 
     .etiqueta:hover {
       font-weight: bold;
     }
-
-    .oculto {
-      display: none;
-    }
-
-    @media (max-width: 900px) {
-      .galeria {
-        column-count: 2;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .galeria {
-        column-count: 1;
-      }
-    }
   </style>
 </head>
 <body>
+  <header>npc</header>
 
-  <header>
-    npc
-  </header>
-
-  <div style="text-align: center;">
-    <button class="menu-toggle" onclick="toggleMenu()">🗂️</button>
-    <button class="reload-button" onclick="recargarPagina()">🗘</button>
+  <div id="menu">
+    <button onclick="recargarObras()">📁</button>
+    <button onclick="filtrarPorCategoria('')">🔁</button>
   </div>
 
-  <nav id="menu">
-    <div class="categoria" onclick="filtrarPorCategoria('todos')">ver todas</div>
-    <div class="categoria" onclick="filtrarPorCategoria('abstracción')">abstracción</div>
-    <div class="categoria" onclick="filtrarPorCategoria('arquitectura')">arquitectura</div>
-    <div class="categoria" onclick="filtrarPorCategoria('diseño de indumentaria')">diseño de indumentaria</div>
-    <div class="categoria" onclick="filtrarPorCategoria('diseño de interiores')">diseño de interiores</div>
-    <div class="categoria" onclick="filtrarPorCategoria('escultura')">escultura</div>
-    <div class="categoria" onclick="filtrarPorCategoria('fotografía')">fotografía</div>
-    <div class="categoria" onclick="filtrarPorCategoria('ilustración')">ilustración</div>
-    <div class="categoria" onclick="filtrarPorCategoria('nostalgia futurista')">nostalgia futurista</div>
-    <div class="categoria" onclick="filtrarPorCategoria('scifi')">scifi</div>
-  </nav>
-
-  <div class="filtros">
-    <input type="text" id="buscador" placeholder="Buscar por etiqueta...">
+  <div id="buscador">
+    <input type="text" id="busqueda" placeholder="Buscar por etiqueta..." oninput="filtrarBusqueda()"/>
   </div>
 
-  <div class="galeria" id="galeria"></div>
+  <div id="galeria"></div>
+
+  <!-- Música de fondo -->
+  <div style="display:none">
+    <!-- PEGÁ ACÁ EL LINK DE SPOTIFY (src del iframe) -->
+    <iframe style="display:none" 
+            src="https://open.spotify.com/embed/playlist/TU_PLAYLIST_ACÁ" 
+            width="0" height="0" frameborder="0" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+            allowfullscreen loading="lazy">
+    </iframe>
+  </div>
 
   <script>
     const galeria = document.getElementById('galeria');
-    const buscador = document.getElementById('buscador');
-    const menu = document.getElementById('menu');
 
-    // Recargar con nuevo orden aleatorio
-    function recargarPagina() {
+    function recargarObras() {
       location.reload();
     }
 
-    // Alternar menú
-    function toggleMenu() {
-      menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    function filtrarPorCategoria(categoria) {
+      const items = document.querySelectorAll('.item');
+      items.forEach(item => {
+        if (!categoria || item.dataset.etiquetas.includes(categoria)) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
     }
 
-    // Filtrar por texto
-    buscador.addEventListener('input', () => {
-      const filtro = buscador.value.toLowerCase();
-      document.querySelectorAll('.item').forEach(obra => {
-        const etiquetas = obra.dataset.etiquetas.toLowerCase();
-        obra.classList.toggle('oculto', !etiquetas.includes(filtro));
+    function filtrarBusqueda() {
+      const input = document.getElementById('busqueda').value.toLowerCase();
+      const items = document.querySelectorAll('.item');
+      items.forEach(item => {
+        if (item.dataset.etiquetas.toLowerCase().includes(input)) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
       });
-    });
-
-    // Filtrar por categoría desde menú o etiqueta
-    function filtrarPorCategoria(categoria) {
-      document.querySelectorAll('.item').forEach(obra => {
-        const etiquetas = obra.dataset.etiquetas.toLowerCase();
-        obra.classList.toggle('oculto', categoria !== 'todos' && !etiquetas.includes(categoria));
-      });
-      buscador.value = "";
     }
 
     // Cargar imágenes aleatoriamente desde JSON
     fetch('obras.json')
       .then(res => res.json())
       .then(data => {
-        // Mezclar orden aleatoriamente
         data.sort(() => Math.random() - 0.5);
-
         data.forEach(obra => {
           const item = document.createElement('div');
           item.className = 'item';
@@ -202,11 +152,10 @@
           const etiquetaTexto = obra.etiquetas;
           const etiquetaHTML = `<span class="etiqueta" onclick="filtrarPorCategoria('${etiquetaTexto}')">${etiquetaTexto}</span>`;
 
-          item.innerHTML = `<img src="${obra.src}" alt=""><div>${etiquetaHTML}</div>`;
+          item.innerHTML = `<img src="${obra.src}" alt="${etiquetaTexto}"><div>${etiquetaHTML}</div>`;
           galeria.appendChild(item);
         });
       });
   </script>
-
 </body>
 </html>
