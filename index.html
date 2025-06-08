@@ -172,6 +172,72 @@
       min-width: 200px;
       flex: 1;
     }
+
+    .login-button {
+      background-color: #D4D0C8;
+      border: 2px outset #ffffff;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 18px;
+      margin: 10px;
+    }
+
+    .login-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.3);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .login-window {
+      background-color: #C0C0C0;
+      border: 2px outset #fff;
+      width: 300px;
+      padding: 0;
+      font-family: 'MS Sans Serif', Tahoma, sans-serif;
+      font-size: 14px;
+    }
+
+    .login-title-bar {
+      background-color: #000080;
+      color: white;
+      padding: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .login-title-bar button {
+      background-color: #C0C0C0;
+      border: 2px outset #fff;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .login-window form {
+      padding: 10px;
+    }
+
+    .login-window input {
+      width: 100%;
+      padding: 4px;
+      border: 2px inset #808080;
+      background-color: white;
+      font-family: 'MS Sans Serif';
+    }
+
+    .login-window button[type="submit"] {
+      margin-top: 10px;
+      background-color: #D4D0C8;
+      border: 2px outset #ffffff;
+      padding: 4px 10px;
+      cursor: pointer;
+      font-family: 'MS Sans Serif';
+    }
   </style>
 </head>
 <body>
@@ -183,6 +249,27 @@
   <div style="text-align: center;">
     <button class="menu-toggle" onclick="toggleMenu()">🗁</button>
     <button class="reload-button" onclick="recargarPagina()">⇄</button>
+  </div>
+  <div style="text-align: center;">
+    <button class="menu-toggle" onclick="toggleMenu()">🗁</button>
+    <button class="reload-button" onclick="recargarPagina()">⇄</button>
+    <button class="login-button" onclick="toggleLoginModal()">🔐 Iniciar sesión / Registrarse</button>
+  </div>
+
+  <div id="loginModal" class="login-modal">
+    <div class="login-window">
+      <div class="login-title-bar">
+        <span>Inicio de Sesión</span>
+        <button onclick="toggleLoginModal()">✕</button>
+      </div>
+      <form onsubmit="return login(event)">
+        <label>Nombre de usuario:</label><br>
+        <input type="text" id="username" required><br><br>
+        <label>Contraseña:</label><br>
+        <input type="password" id="password" required><br><br>
+        <button type="submit">Entrar</button>
+      </form>
+    </div>
   </div>
 
   <nav id="menu">
@@ -316,6 +403,20 @@
           galeria.appendChild(item);
         });
       });
+
+      function toggleLoginModal() {
+      const modal = document.getElementById('loginModal');
+      modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function login(event) {
+      event.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      alert("Usuario: " + username + "\nContraseña: " + password);
+      toggleLoginModal();
+      return false;
+    }
   </script>
 
 </body>
