@@ -361,6 +361,7 @@
       if (tipo === 'ver') {
         visorImg.src = src;
         visor.style.display = 'flex';
+        galeria.style.display = 'none'; // 🔹 Oculta la galería
 
         // Cargar metadatos básicos
         const img = new Image();
@@ -373,6 +374,7 @@
           `;
         };
       }
+
 
       if (tipo === 'descargar') {
         const link = document.createElement('a');
