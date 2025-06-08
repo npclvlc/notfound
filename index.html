@@ -362,38 +362,6 @@
         visorImg.src = src;
         visor.style.display = 'flex';
         galeria.style.display = 'none'; // 🔹 Oculta la galería
-
-        obtenerInformacionIA(src).then(info => {
-          metadatos.innerHTML = `
-            <form>
-              <label><b>Artista:</b></label><br>
-              <input type="text" value="${info.artista}" readonly><br><br>
-              <label><b>País de origen:</b></label><br>
-              <input type="text" value="${info.pais}" readonly><br><br>
-              <label><b>Fecha de publicación:</b></label><br>
-              <input type="text" value="${info.fecha}" readonly><br><br>
-              <label><b>Instagram del artista:</b></label><br>
-              <input type="text" value="${info.instagram}" readonly><br><br>
-              <label><b>X del artista:</b></label><br>
-              <input type="text" value="${info.x}" readonly><br>
-            </form>
-          `;
-        });
-      }
-
-      // Simulación de llamada IA — reemplazable con API real
-      async function obtenerInformacionIA(src) {
-        return new Promise(resolve => {
-          setTimeout(() => {
-            resolve({
-              artista: "Desconocido",
-              pais: "Desconocido",
-              fecha: "Desconocida",
-              instagram: "@ejemplo_ig",
-              x: "@ejemplo_x"
-            });
-          }, 1000);
-        });
       }
 
 
