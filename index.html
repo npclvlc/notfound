@@ -244,6 +244,22 @@
       cursor: pointer;
       font-family: 'MS Sans Serif';
     }
+
+    .boton-perfil {
+      display: inline-block;
+      margin-left: 10px;
+      padding: 4px 8px;
+      background-color: #E0E0E0;
+      border: 2px outset #808080;
+      font-size: 14px;
+      text-decoration: none;
+      color: black;
+      font-family: 'MS Sans Serif', Tahoma, sans-serif;
+    }
+
+    .boton-perfil:hover {
+      background-color: #C0C0C0;
+    }
   </style>
 </head>
 <body>
@@ -254,6 +270,7 @@
       <button class="login-button small" onclick="toggleLoginModal()">🔐 Iniciar sesión</button>
       <button class="login-button small" onclick="toggleRegisterModal()">📝 Registrarse</button>
     </div>
+    <a href="perfil.html" class="boton-perfil">👤 Mi perfil</a>
   </header>
   
   <div style="text-align: center;">
