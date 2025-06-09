@@ -271,22 +271,16 @@
     npc
     <div style="position: absolute; top: 10px; right: 10px;">
       <div style="display: flex; align-items: center; gap: 10px;">
-        <!-- Menú y recarga -->
-        <div style="display: flex; gap: 5px;">
-          <button class="menu-toggle" onclick="toggleMenu()">🗁</button>
-          <button class="reload-button" onclick="recargarPagina()">⇄</button>
-        </div>
         <!-- Barra de búsqueda -->
         <input type="text" id="buscador" placeholder="Buscar por etiqueta...">
         <!-- Botones de login/registro -->
-        <div style="display: flex; flex-direction: column; gap: 4px; align-items: flex-end;">
+        <div style="position: absolute; top: 10px; right: 10px; display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
           <div style="display: flex; gap: 5px;">
             <button class="login-button small" onclick="toggleLoginModal()">🔐 Iniciar sesión</button>
             <button class="login-button small" onclick="toggleRegisterModal()">📝 Registrarse</button>
           </div>
         </div>
       </div>
-      <!-- Botón "Mi perfil" debajo -->
       <div style="margin-top: 6px; display: flex; justify-content: flex-end;">
         <a href="perfil.html" class="boton-perfil">👤 Mi perfil</a>
       </div>
@@ -347,6 +341,10 @@
     <div class="categoria" onclick="filtrarPorCategoria('ilustración')">ilustración</div>
     <div class="categoria" onclick="filtrarPorCategoria('nostalgia futurista')">nostalgia futurista</div>
   </nav>
+
+  <div class="filtros">
+    <input type="text" id="buscador" placeholder="Buscar por etiqueta...">
+  </div>
 
   <div class="galeria" id="galeria"></div>
 
