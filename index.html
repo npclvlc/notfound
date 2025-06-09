@@ -285,6 +285,7 @@
       <button class="menu-toggle" onclick="toggleMenu()">🗁</button>
       <button class="reload-button" onclick="recargarPagina()">⇄</button>
     </div>
+    <a href="perfil.html" class="boton-perfil">👤 Mi perfil</a>
   </div>
 
 
@@ -335,10 +336,6 @@
     <div class="categoria" onclick="filtrarPorCategoria('nostalgia futurista')">nostalgia futurista</div>
   </nav>
 
-  <div class="filtros">
-    <input type="text" id="buscador" placeholder="Buscar por etiqueta...">
-  </div>
-
   <div class="galeria" id="galeria"></div>
 
   <!-- Visor de imagen y metadatos -->
@@ -358,7 +355,6 @@
 
   <script>
     const galeria = document.getElementById('galeria');
-    const buscador = document.getElementById('buscador');
     const menu = document.getElementById('menu');
     const contextMenu = document.getElementById('contextMenu');
     const visor = document.getElementById('visor');
@@ -375,20 +371,11 @@
       menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
     }
 
-    buscador.addEventListener('input', () => {
-      const filtro = buscador.value.toLowerCase();
-      document.querySelectorAll('.item').forEach(obra => {
-        const etiquetas = obra.dataset.etiquetas.toLowerCase();
-        obra.classList.toggle('oculto', !etiquetas.includes(filtro));
-      });
-    });
-
     function filtrarPorCategoria(categoria) {
       document.querySelectorAll('.item').forEach(obra => {
         const etiquetas = obra.dataset.etiquetas.toLowerCase();
         obra.classList.toggle('oculto', categoria !== 'todos' && !etiquetas.includes(categoria));
       });
-      buscador.value = "";
       menu.style.display = 'none'; // 🔹 Cierra el menú automáticamente
     }
 
