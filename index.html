@@ -275,6 +275,9 @@
           <button class="login-button small" onclick="toggleRegisterModal()">📝 Registrarse</button>
         </div>
       </div>
+      <div style="margin-top: 6px; display: flex; justify-content: flex-end;">
+        <a href="perfil.html" class="boton-perfil">👤 Mi perfil</a>
+      </div>
   </header>
   
   <div style="display: flex; align-items: center; justify-content: space-between; margin: 10px 10px 0 10px;">
@@ -284,9 +287,6 @@
     </div>
   </div>
 
-  <div style="margin-top: 6px; display: flex; justify-content: flex-end;">
-    <a href="perfil.html" class="boton-perfil">👤 Mi perfil</a>
-  </div>
 
   <div id="loginModal" class="login-modal">
     <div class="login-window">
@@ -334,6 +334,10 @@
     <div class="categoria" onclick="filtrarPorCategoria('ilustración')">ilustración</div>
     <div class="categoria" onclick="filtrarPorCategoria('nostalgia futurista')">nostalgia futurista</div>
   </nav>
+
+  <div class="filtros">
+    <input type="text" id="buscador" placeholder="Buscar por etiqueta...">
+  </div>
 
   <div class="galeria" id="galeria"></div>
 
