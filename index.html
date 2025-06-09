@@ -252,7 +252,7 @@
     npc
     <div style="position: absolute; top: 10px; right: 10px; display: flex; gap: 5px;">
       <button class="login-button small" onclick="toggleLoginModal()">🔐 Iniciar sesión</button>
-      <button class="login-button small" onclick="alert('Función de registro no implementada')">📝 Registrarse</button>
+      <button class="login-button small" onclick="toggleRegisterModal()">📝 Registrarse</button>
     </div>
   </header>
   
@@ -276,6 +276,25 @@
       </form>
     </div>
   </div>
+
+  <div id="registerModal" class="login-modal">
+    <div class="login-window">
+      <div class="login-title-bar">
+        <span>Registro</span>
+        <button onclick="toggleRegisterModal()">✕</button>
+      </div>
+      <form onsubmit="return register(event)">
+        <label>Nombre de usuario:</label><br>
+        <input type="text" id="registerUsername" required><br><br>
+        <label>Correo electrónico:</label><br>
+        <input type="email" id="registerEmail" required><br><br>
+        <label>Contraseña:</label><br>
+        <input type="password" id="registerPassword" required><br><br>
+        <button type="submit">Registrarse</button>
+      </form>
+    </div>
+  </div>
+
 
   <nav id="menu">
     <div class="categoria" onclick="filtrarPorCategoria('todos')">ver todas</div>
@@ -411,6 +430,21 @@
       const password = document.getElementById("password").value;
       alert("Usuario: " + username + "\nContraseña: " + password);
       toggleLoginModal();
+      return false;
+    }
+
+    function toggleRegisterModal() {
+      const modal = document.getElementById('registerModal');
+      modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function register(event) {
+      event.preventDefault();
+      const username = document.getElementById("registerUsername").value;
+      const email = document.getElementById("registerEmail").value;
+      const password = document.getElementById("registerPassword").value;
+      alert("Registro enviado:\nUsuario: " + username + "\nEmail: " + email + "\nContraseña: " + password);
+      toggleRegisterModal();
       return false;
     }
   </script>
