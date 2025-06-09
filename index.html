@@ -182,6 +182,12 @@
       margin: 10px;
     }
 
+    .login-button.small {
+      font-size: 12px;
+      padding: 3px 6px;
+      margin: 0 3px;
+    }
+
     .login-modal {
       display: none;
       position: fixed;
@@ -244,16 +250,15 @@
 
   <header>
     npc
+    <div style="text-align: center;">
+      <button class="login-button small" onclick="toggleLoginModal()">🔐 Iniciar sesión</button>
+      <button class="login-button small" onclick="alert('Función de registro no implementada')">📝 Registrarse</button>
+    </div>
   </header>
-
+  
   <div style="text-align: center;">
     <button class="menu-toggle" onclick="toggleMenu()">🗁</button>
     <button class="reload-button" onclick="recargarPagina()">⇄</button>
-  </div>
-  <div style="text-align: center;">
-    <button class="menu-toggle" onclick="toggleMenu()">🗁</button>
-    <button class="reload-button" onclick="recargarPagina()">⇄</button>
-    <button class="login-button" onclick="toggleLoginModal()">🔐 Iniciar sesión / Registrarse</button>
   </div>
 
   <div id="loginModal" class="login-modal">
