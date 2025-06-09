@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Perfil de Usuario</title>
+  <style>
+    body {
+      font-family: 'MS Sans Serif', Tahoma, sans-serif;
+      background-color: #C0C0C0;
+      margin: 0;
+      padding: 0;
+      color: black;
+    }
+
+    .titulo {
+      background-color: #808080;
+      color: white;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #404040;
+    }
+
+    .titulo h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .boton-volver {
+      display: inline-block;
+      padding: 4px 8px;
+      background-color: #E0E0E0;
+      border: 2px outset #808080;
+      font-size: 14px;
+      text-decoration: none;
+      color: black;
+    }
+
+    .boton-volver:hover {
+      background-color: #C0C0C0;
+    }
+
+    .perfil {
+      padding: 20px;
+    }
+
+    .perfil-contenedor {
+      background-color: #E0E0E0;
+      border: 2px solid #808080;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .foto-perfil {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border: 2px inset #808080;
+      background-color: #FFFFFF;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .nombre-usuario {
+      font-size: 20px;
+      margin: 10px 0;
+    }
+
+    .descripcion-usuario {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .titulo-colecciones {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .carrusel-colecciones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .coleccion {
+      width: 150px;
+      height: 100px;
+      background-color: #D0D0D0;
+      border: 2px inset #808080;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #404040;
+    }
+
+    .coleccion.vacia {
+      font-style: italic;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header class="titulo">
+    <h1>Museo Virtual</h1>
+    <a href="index.html" class="boton-volver">← Volver al inicio</a>
+  </header>
+
+  <section class="perfil">
+    <div class="perfil-contenedor">
+      <img class="foto-perfil" src="img/avatar.png" alt="Foto de perfil">
+      <h2 class="nombre-usuario">nombre_de_usuario</h2>
+      <p class="descripcion-usuario">Esta es una breve descripción sobre el usuario. Puede hablar de sus intereses, estilo o cualquier otro detalle relevante.</p>
+      
+      <h3 class="titulo-colecciones">Colecciones</h3>
+      <div class="carrusel-colecciones">
+        <div class="coleccion vacia">+ Añadir colección</div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
