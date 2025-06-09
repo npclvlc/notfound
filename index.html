@@ -31,9 +31,12 @@
       background-color: #D4D0C8;
       border: 2px outset #ffffff;
       padding: 5px 10px;
+      width: 45px;
+      height: 35px;
+      text-align: center;
       cursor: pointer;
-      margin: 10px;
       font-size: 18px;
+      line-height: 1;
     }
 
     nav {
@@ -266,17 +269,25 @@
 
   <header style="position: relative;">
     npc
-    <div style="position: absolute; top: 10px; right: 10px; display: flex; gap: 5px;">
-      <button class="login-button small" onclick="toggleLoginModal()">🔐 Iniciar sesión</button>
-      <button class="login-button small" onclick="toggleRegisterModal()">📝 Registrarse</button>
+    <div style="position: absolute; top: 10px; right: 10px; display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
+       <div style="display: flex; gap: 5px;"> 
+          <button class="login-button small" onclick="toggleLoginModal()">🔐 Iniciar sesión</button>
+          <button class="login-button small" onclick="toggleRegisterModal()">📝 Registrarse</button>
+       </div>
+       <a href="perfil.html" class="boton-perfil">👤 Mi perfil</a>
     </div>
-    <a href="perfil.html" class="boton-perfil">👤 Mi perfil</a>
   </header>
   
-  <div style="text-align: center;">
-    <button class="menu-toggle" onclick="toggleMenu()">🗁</button>
-    <button class="reload-button" onclick="recargarPagina()">⇄</button>
+  <div style="display: flex; align-items: center; justify-content: space-between; margin: 10px 10px 0 10px;">
+    <div style="display: flex; gap: 5px;">
+      <button class="menu-toggle" onclick="toggleMenu()">🗁</button>
+      <button class="reload-button" onclick="recargarPagina()">⇄</button>
+    </div>
+    <div class="filtros">
+      <input type="text" id="buscador" placeholder="Buscar por etiqueta...">
+    </div>
   </div>
+
 
   <div id="loginModal" class="login-modal">
     <div class="login-window">
@@ -379,7 +390,9 @@
         obra.classList.toggle('oculto', categoria !== 'todos' && !etiquetas.includes(categoria));
       });
       buscador.value = "";
+      menu.style.display = 'none'; // 🔹 Cierra el menú automáticamente
     }
+
 
     // Mostrar panel contextual al hacer click en imagen
     document.addEventListener('click', (e) => {
